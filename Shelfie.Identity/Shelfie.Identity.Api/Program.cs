@@ -1,11 +1,47 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Shelfie.Identity.DataAccess;
+using Shelfie.Identity.DataAccess.Data;
 
-// Add services to the container.
+var seed = args.Contains("/seed");
+if (seed)
+{
+    args = args.Except(new[] { "/seed" }).ToArray();
+}
+
+var builder = WebApplication.CreateBuilder(args);
+var assembly = typeof(AspNetIdentityDbContext).Assembly.GetName().Name;
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+if (seed)
+{
+    SeedData.EnsureSeedData(connectionString);
+}
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<AspNetIdentityDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AspNetIdentityDbContext>();
+
+builder.Services.AddIdentityServer()
+    .AddAspNetIdentity<IdentityUser>()
+    .AddConfigurationStore(options =>
+    {
+        options.ConfigureDbContext = b =>
+            b.UseSqlServer(connectionString, b => b.MigrationsAssembly(assembly));
+    })
+    .AddOperationalStore(options =>
+    {
+        options.ConfigureDbContext = b =>
+            b.UseSqlServer(connectionString, b => b.MigrationsAssembly(assembly));
+    })
+    .AddDeveloperSigningCredential();
 
 var app = builder.Build();
 
@@ -17,7 +53,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseIdentityServer();
 app.UseAuthorization();
 
 app.MapControllers();

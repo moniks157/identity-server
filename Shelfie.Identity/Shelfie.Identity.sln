@@ -4,6 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelfie.Identity.Api", "Shelfie.Identity.Api\Shelfie.Identity.Api.csproj", "{E296EC98-C5A5-4E99-94B4-89CED5F165A7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4C40D66D-306C-4A2B-985E-14EF81A592DB} = {4C40D66D-306C-4A2B-985E-14EF81A592DB}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelfie.Identity.DataAccess", "Shelfie.Identity.DataAccess\Shelfie.Identity.DataAccess.csproj", "{4EAA43CD-3630-404E-8501-887D06171430}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shelfie.Identity.BusinessLogic", "Shelfie.Identity.BusinessLogic\Shelfie.Identity.BusinessLogic.csproj", "{4C40D66D-306C-4A2B-985E-14EF81A592DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +22,14 @@ Global
 		{E296EC98-C5A5-4E99-94B4-89CED5F165A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E296EC98-C5A5-4E99-94B4-89CED5F165A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E296EC98-C5A5-4E99-94B4-89CED5F165A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EAA43CD-3630-404E-8501-887D06171430}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EAA43CD-3630-404E-8501-887D06171430}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EAA43CD-3630-404E-8501-887D06171430}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EAA43CD-3630-404E-8501-887D06171430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C40D66D-306C-4A2B-985E-14EF81A592DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C40D66D-306C-4A2B-985E-14EF81A592DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C40D66D-306C-4A2B-985E-14EF81A592DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C40D66D-306C-4A2B-985E-14EF81A592DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
